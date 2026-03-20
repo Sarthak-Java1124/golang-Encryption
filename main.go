@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
 	"os"
 
@@ -80,8 +81,11 @@ func getPassword() []byte {
 
 }
 
-func validatePassword() bool {
-
+func validatePassword(password1 []byte, password2 []byte) bool {
+	if !bytes.Equal(password1, password2) {
+		return false
+	}
+	return true
 }
 func validateFile(file string) bool {
 	if _, err := os.Stat(file); os.IsNotExist(err) {
